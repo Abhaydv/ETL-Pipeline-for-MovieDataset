@@ -5,3 +5,5 @@ pymysql
 python-dotenv
 pytest
 PyPDF2
+alembic
+psycopg2-binary

@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: moviesdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    depends_on:
+      - db
+    environment:
+      DB_TYPE: postgresql
+      DB_HOST: db
+      DB_NAME: moviesdb
+      DB_USER: postgres
+      DB_PASS: postgres
+      DB_PORT: '5432'
+      # DATABASE_URL is used by Alembic (SQLAlchemy URL format)
+      DATABASE_URL: postgresql+psycopg2://postgres:postgres@db:5432/moviesdb
+    ports:
+      - "8000:8000"
+    command: []
+
+volumes:
+  db_data:

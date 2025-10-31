@@ -12,4 +12,6 @@ COPY . /app
 
 ENV PYTHONUNBUFFERED=1
 
-CMD ["python", "etl_pipeline.py"]
+# Make entrypoint executable and use it so migrations run at container start
+RUN chmod +x /app/entrypoint.sh || true
+ENTRYPOINT ["/app/entrypoint.sh"]

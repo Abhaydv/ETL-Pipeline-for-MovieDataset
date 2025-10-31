@@ -46,6 +46,19 @@ This project builds an automated ETL (Extract, Transform, Load) pipeline that:
    python etl_pipeline.py --pages 3
    ```
 
+   ## Docker
+
+   Build and run with Docker (creates a container that runs the pipeline):
+
+   ```powershell
+   docker build -t movies-etl .
+   docker run --rm movies-etl
+   ```
+
+   ## Database schema
+
+   An example SQL schema is available at `sql/create_movies_table.sql` — use it to create the target table in your DB before running the pipeline into MySQL/Postgres if you prefer explicit schema management.
+
    4. To load into MySQL or PostgreSQL, set DB_TYPE and other DB_* environment vars before running:
 
    ```powershell
